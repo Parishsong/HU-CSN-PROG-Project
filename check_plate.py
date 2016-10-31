@@ -11,6 +11,7 @@ for item in list:
     try:
         plate = read_plate(item)['results'][0]['plate']
         count += 1
+        print(count)
         print(plate)
     except:
         continue
