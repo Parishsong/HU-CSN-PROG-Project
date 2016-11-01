@@ -1,9 +1,8 @@
-import requests
-import json
-import time
+import requests, json, time
+from auth import key
 
 def getPlateInfo(filename):
-    private_key = "sk_9e51cf37dc49e9b706c7922e"
+    private_key = key
     url = "https://api.openalpr.com/v1/recognize?secret_key={}&tasks=plate&country=eu".format(private_key)
     file = open(filename, 'rb')
     response = requests.post(url, files={'image': file})
