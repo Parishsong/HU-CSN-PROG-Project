@@ -1,14 +1,19 @@
-from subprocess import check_output
+import requests
+import json
 import time
 
 def getPlateInfo(filename):
-    plate_dict = check_output("alpr -c eu -p nl -n 1 -j %s" %filename,shell=True).decode()
-    return eval(plate_dict)
+    private_key = "sk_9e51cf37dc49e9b706c7922e"
+    url = "https://api.openalpr.com/v1/recognize?secret_key={}&tasks=plate&country=eu".format(private_key)
+    file = open(filename, 'rb')
+    response = requests.post(url, files={'image': file})
+    jsontext = json.loads(response.text)
+    return jsontext
 
-def getPlateNumber(filename):
-    plate = getPlateInfo(filename)['results'][0]['plate']
+def getPlateNumber(plateInfo):
+    plate = plateInfo['plate']['results'][0]['plate']
     return plate
 
-def getPlateTime(filename):
-    date = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(int(getPlateInfo(filename)['epoch_time'])/1000))
+def getPlateTime(plateInfo):
+    date = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(int(plateInfo['plate']['epoch_time'])/1000))
     return date
