@@ -1,0 +1,4 @@
+import mysql.connector
+Connection = mysql.connector.connect(host='', user='', password='', db='')
+ExecuteQuery(Connection)
+Connection.close()
