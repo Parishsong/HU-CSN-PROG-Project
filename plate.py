@@ -14,5 +14,5 @@ def getPlateNumber(plateInfo):
     return plate
 
 def getPlateTime(plateInfo):
-    date = int(plateInfo['plate']['epoch_time']/1000)
-    return date
+    unixStamp = int(plateInfo['plate']['epoch_time']/1000)
+    return unixStamp
