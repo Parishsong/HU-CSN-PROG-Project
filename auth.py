@@ -1,1 +1,3 @@
 openALPRSecretkey = '<ENTER PRIVATE KEY HERE>'
+sqlUserName = '<ENTER SQL USER NAME HERE>'
+sqlPassword = '<ENTER SQL PASSWORD HERE>'
