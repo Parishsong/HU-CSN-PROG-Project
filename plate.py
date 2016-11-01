@@ -1,5 +1,5 @@
 import requests, json, time
-from auth import key
+from auth import openALPRSecretkey as key
 
 def getPlateInfo(filename):
     private_key = key

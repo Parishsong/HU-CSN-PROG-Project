@@ -1,1 +1,1 @@
-key = '<ENTER PRIVATE KEY HERE>'
+openALPRSecretkey = '<ENTER PRIVATE KEY HERE>'
