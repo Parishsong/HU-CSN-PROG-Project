@@ -1,17 +1,14 @@
 from subprocess import check_output
-import glob
+import time
 
-def read_plate(filename):
-    plate_dict = check_output("alpr -c eu -p nl -j %s" %filename,shell=True).decode()
+def getPlateInfo(filename):
+    plate_dict = check_output("alpr -c eu -p nl -n 1 -j %s" %filename,shell=True).decode()
     return eval(plate_dict)
 
-list = glob.glob('sample/*.jpg')
-count = 0
-for item in list:
-    try:
-        plate = read_plate(item)['results'][0]['plate']
-        count += 1
-        print(count)
-        print(plate)
-    except:
-        continue
+def getPlateNumber(filename):
+    plate = getPlateInfo(filename)['results'][0]['plate']
+    return plate
+
+def getPlateTime(filename):
+    date = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(int(getPlateInfo(filename)['epoch_time'])/1000))
+    return date
