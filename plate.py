@@ -1,4 +1,4 @@
-import requests, json, time
+import requests, json
 from auth import openALPRSecretkey as key
 
 def getPlateInfo(filename):
@@ -14,5 +14,5 @@ def getPlateNumber(plateInfo):
     return plate
 
 def getPlateTime(plateInfo):
-    date = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(int(plateInfo['plate']['epoch_time'])/1000))
+    date = int(plateInfo['plate']['epoch_time']/1000)
     return date
